@@ -6,12 +6,15 @@ const categorieRoute = require("./routes/categoriesRoutes");
 const globelErrorController = require("./controllers/errorController");
 const transactionRouter = require("./routes/transactionRoute");
 const AppError = require("./utils/appError");
+const compression = require("compression");
 
 app.use(express.json());
 
 if (process.env.NODE_ENV === "devolopment") {
   app.use(morgan("dev"));
 }
+
+app.use(compression());
 
 app.use("/flow/ai/assignment/user", userRoute);
 app.use("/flow/ai/assignment/categories", categorieRoute);
